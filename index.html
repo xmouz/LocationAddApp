@@ -10,11 +10,11 @@
         height: 350px;
         width: 310px;
     </style>
-	<title>My Application</title>
+	<title>Add Location</title>
 	
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
-	<link rel="apple-touch-icon-precomposed" href="C:\Users\LT-MAINFRAME\Desktop\LocationAddApp-master\img\icon.png">
-	<link rel="apple-touch-startup-image" href="C:\Users\LT-MAINFRAME\Desktop\LocationAddApp-master\img\splash.png">
+	<link rel="apple-touch-icon-precomposed" href="img/icon.png">
+	<link rel="apple-touch-startup-image" href="img/splash.png">
 	<link rel="stylesheet" href="css/geojoy.css">
    	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
@@ -82,16 +82,16 @@
 <body class="index" onload="getStorageQty()">
 	<div data-role="page" id="home">
 		<header data-nobackbtn="true" data-role="header">
-		<center><img src="C:\Users\LT-MAINFRAME\Desktop\LocationAddApp-master\img\title.png" width="112"></center>
+		<center><img src="img/title.png" width="112"></center>
 		</header>
 		<div data-role="content" class="well-large" >
 			<ul class="search-query" data-dividertheme="a" data-inset="true" data-role="listview" data-theme="c">
 			  <span class="search-query"></span>
 				<li data-icon="map-mark">
-					<a href="#add" onclick="currentLoc()" title="View location" data-transition="slide">My Location</a>
+					<a href="#add" onclick="currentLoc()" title="View location" data-transition="slide">Add Location Me</a>
 				</li>
 				<li data-icon="grid">
-					<a href="#loc_mgmt" title="Your locations" data-transition="flip">View Location</a>
+					<a href="#loc_mgmt" title="Your locations" data-transition="flip">Manage Location</a>
 					<span class="ui-li-count" id="storageQty"></span>
 				</li>
 			
@@ -104,7 +104,7 @@
 	
 	<div data-role="page" id="loc_mgmt">
 		<header data-nobackbtn="true" data-role="header" name="header">
-			<center><img src="C:\Users\LT-MAINFRAME\Desktop\LocationAddApp-master\img\title.png"></center>
+			<center><img src="img/title.png"></center>
 		</header>
 		<div data-role="content" id="content" >
 			<ul data-role="listview" id="locationItems" data-inset="true" data-theme="c" data-dividertheme="a">
@@ -169,131 +169,31 @@
 	
 	<div data-role="page" id="add" >
 		<header data-nobackbtn="true" data-role="header">
-			<center><img src="C:\Users\LT-MAINFRAME\Desktop\LocationAddApp-master\img\title.png"></center>
+			<center><img src="img/title.png"></center>
 		</header>
 		<div data-role="content" id="geo_content">
 			<div id="toolbar" data-role="controlgroup" data-type="horizontal"><a href="#home" title="Back home" data-role="button" data-icon="refresh" data-theme="c" class="toolbar_link" data-transition="slide">Back</a></div>
-			<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-				<tr>
-					<td >
-						<label class="control-label" for="nameInput">Location </label>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3" width=60%>
-						<input type="text" name="nameInput" id="nameInput" class="input-large">
-					</td>
-				</tr>
-				<tr>
-					<td >
-						<div class="control-group">
-						<label for="selectType">Time </label>
-					</td>
-				</tr>
-				<tr>
-					<td width=20%>
-						<div class="controls">
-						<select name="selectType" id="hour" class="input-small" >
-							<option value="0">00</option>
-							<option value="1">01</option>
-							<option value="2">02</option>
-							<option value="3">03</option>
-							<option value="4">04</option>
-							<option value="5">05</option>
-							<option value="6">06</option>
-							<option value="7">07</option>
-							<option value="8">08</option>
-							<option value="9">09</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>						
-						</select>
-						</td>
-						<td width=2%>:</td>
-						<td width=20%>
-						<select name="selectType" id="minute" class="input-small" >
-							<option value="0">00</option>
-							<option value="1">01</option>
-							<option value="2">02</option>
-							<option value="3">03</option>
-							<option value="4">04</option>
-							<option value="5">05</option>
-							<option value="6">06</option>
-							<option value="7">07</option>
-							<option value="8">08</option>
-							<option value="9">09</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">30</option>
-							<option value="31">31</option>
-							<option value="32">32</option>
-							<option value="33">33</option>
-							<option value="34">34</option>
-							<option value="35">35</option>
-							<option value="36">36</option>
-							<option value="37">37</option>
-							<option value="38">38</option>
-							<option value="39">39</option>
-							<option value="40">40</option>
-							<option value="41">41</option>
-							<option value="42">42</option>
-							<option value="43">43</option>
-							<option value="44">44</option>
-							<option value="45">45</option>
-							<option value="46">46</option>
-							<option value="47">47</option>
-							<option value="48">48</option>
-							<option value="49">49</option>
-							<option value="50">50</option>
-							<option value="51">51</option>
-							<option value="52">52</option>
-							<option value="53">53</option>
-							<option value="54">54</option>
-							<option value="55">55</option>
-							<option value="56">56</option>
-							<option value="57">57</option>
-							<option value="58">58</option>
-							<option value="59">59</option>			
-						</select>
-					</div>
-					</div>
-						</td>
-				</tr>
-			</table>
+			<label for="nameInput">Location name:</label>
+			<input type="text" name="nameInput" id="nameInput">
+			<label for="selectType">Location type:</label>
+			<select name="selectType" id="selectType">
+				<option value="art">Arts & Crafts</option>
+				<option value="education">Education</option>
+				<option value="entertainment">Entertainment</option>
+				<option value="family">Family</option>
+				<option value="food">Food</option>
+				<option value="friends">Friends</option>
+				<option value="landscape">Landscape</option>
+				<option value="museum">Museum</option>
+				<option value="party">Party</option>
+				<option value="professional">Professional</option>
+				<option value="shopping">Shopping</option>
+			</select>
 			<input type="hidden" name="coordinates" id="coordinates">
 			<input type="hidden" name="itemId"  id="itemId">
 			<div id="mapImage"></div>
 			<div data-role="button" id="geoButton" data-theme="a" onclick="getGeo()">
-			  <p>Save Location</p>
+			  <p>Show map</p>
 			</div>
            <p>&nbsp;</p>
           <p>&nbsp;</p><div data-role="controlgroup" id="clearSaveButtons" style="display:none;" data-type="horizontal">
