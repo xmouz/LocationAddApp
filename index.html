@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA Compatible" content="IE=edge,chrome=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	
+	<title>Add Location</title>
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+	<link rel="apple-touch-icon-precomposed" href="img/icon.png">
+	<link rel="apple-touch-startup-image" href="img/splash.png">
+	<link rel="stylesheet" href="css/geojoy.css">
+   	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+
+	<script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+	<script src="js/geoJoy.js" type="text/javascript"></script>
+	
+	<!-- DELETE THIS IF YOU ARE FORKING, DEVELOPING AND/OR HOSTING ON YOUR OWN!
+	
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-21568307-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+	
+	DELETE THIS IF YOU ARE FORKING, DEVELOPING AND/OR HOSTING ON YOUR OWN! -->
+	
+</head>
+<body class="index" onload="getStorageQty()">
+	<div data-role="page" id="home">
+		<header data-nobackbtn="true" data-role="header">
+		<center><img src="img/title.png"></center>
+		</header>
+		<div data-role="content" class="well-large" style="color:#09C">
+			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+				<li data-icon="map-mark" style="background-color:#03C">
+					<a href="#add" onclick="currentLoc()" title="View location">Add Location Me</a>
+				</li>
+				<li data-icon="grid">
+					<a href="#loc_mgmt" title="Your locations">View Location</a>
+					<span class="ui-li-count" id="storageQty"></span>
+				</li>
+             
+			</ul>
+		</div>
+		</div>
+	
+	<div data-role="page" id="loc_mgmt">
+		<header data-nobackbtn="true" data-role="header" name="header">
+			<center><img src="img/title.png"></center>
+		</header>
+		<div data-role="content" id="content" >
+			<ul data-role="listview" id="locationItems" data-inset="true" data-theme="c" data-dividertheme="a">
+				<li data-role="list-divider"><h4 style="color:#CF0">Location</h4></li>
+				<li data-role="list-divider" class="itemsTitle" id="architecture">Architecture</li>
+				<li data-role="list-divider" class="itemsTitle" id="art">Arts & Crafts</li>
+				<li data-role="list-divider" class="itemsTitle" id="education">Education</li>
+				<li data-role="list-divider" class="itemsTitle" id="entertainment">Entertainment</li>
+				<li data-role="list-divider" class="itemsTitle" id="family">Family</li>
+				<li data-role="list-divider" class="itemsTitle" id="food">Food</li>
+				<li data-role="list-divider" class="itemsTitle" id="friends">Friends</li>
+				<li data-role="list-divider" class="itemsTitle" id="landscape">Landscape & View</li>
+				<li data-role="list-divider" class="itemsTitle" id="museum">Museum</li>
+				<li data-role="list-divider" class="itemsTitle" id="museum">Party</li>
+				<li data-role="list-divider" class="itemsTitle" id="professional">Professional</li>
+				<li data-role="list-divider" class="itemsTitle" id="shopping">Shopping</li>
+				<li data-role="list-divider" class="itemsTitle" id="techonology">Technology</li>
+				<li data-role="list-divider" class="itemsTitle" id="other">Other</li>
+			</ul>
+			<div id="geoMessage"></div>
+			<div data-type="horizontal" data-role="controlgroup">
+            
+				<a href="#home" title="Back home" data-role="button" data-icon="refresh" class="btn-info" data-transition="slide" >Back&nbsp;</a><a href="#clear" data-icon="delete" title="Delete all entries" data-role="button" class="btn-danger">Delete All</a></div>
+
+        </div>
+	</div>
+	
+<div data-role="page" id="clear" >
+		<header data-nobackbtn="true" data-role="header">
+			<center><img src="img/title.png"></center>
+		</header>
+		<div data-role="content" >
+			
+			<h4>Delete All Location<br></h4>
+		  <p>&nbsp;</p>
+                     <p>&nbsp;</p>
+<br>
+<br>
+            <p>&nbsp;</p>
+            
+			<p>Are you sure you want to delete all Location?</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+			<div data-type="horizontal" data-role="controlgroup">
+				<p><a href="#home" onclick="deleteAll()" title="Clear Records" data-icon="check" data-role="button" class="btn-info">&nbsp;Yes&nbsp;</a>
+				  <a href="#loc_mgmt" title="Cancel Deletion" data-icon="delete" data-role="button" class="btn-danger">Cancel</a>
+			  </p>
+				<p>&nbsp;</p>
+                           <p>&nbsp;</p>
+<br>
+<br>
+            <p>&nbsp;</p>
+				<p>&nbsp;</p>
+                <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+			</div>
+		</div>
+	</div>
+	
+	<div data-role="page" id="add" >
+		<header data-nobackbtn="true" data-role="header">
+			<center><img src="img/title.png"></center>
+		</header>
+		<div data-role="content" id="geo_content">
+			<div id="toolbar" data-role="controlgroup" data-type="horizontal"><a href="#home" title="Back home" data-role="button" data-icon="refresh" data-theme="c" class="toolbar_link" data-transition="slide">Back</a></div>
+			<label for="nameInput">Location name:</label>
+			<input type="text" name="nameInput" id="nameInput">
+			<label for="selectType">Location type:</label>
+			<select name="selectType" id="selectType">
+				<option value="art">Arts & Crafts</option>
+				<option value="education">Education</option>
+				<option value="entertainment">Entertainment</option>
+				<option value="family">Family</option>
+				<option value="food">Food</option>
+				<option value="friends">Friends</option>
+				<option value="landscape">Landscape</option>
+				<option value="museum">Museum</option>
+				<option value="party">Party</option>
+				<option value="professional">Professional</option>
+				<option value="shopping">Shopping</option>
+			</select>
+			<input type="hidden" name="coordinates" id="coordinates">
+			<input type="hidden" name="itemId"  id="itemId">
+			<div id="mapImage"></div>
+			<div data-role="button" id="geoButton" data-theme="a" onclick="getGeo()">
+			  <p>Show map</p>
+			</div>
+           <p>&nbsp;</p>
+          <p>&nbsp;</p><div data-role="controlgroup" id="clearSaveButtons" style="display:none;" data-type="horizontal">
+			  <center><div data-role="button" id="saveButton" data-theme="b" onclick="saveItem()" data-icon="check">Save</div>
+				<div data-role="button" id="clearButton" data-theme="a" onclick="clearItem()" data-icon="delete">Cancel</div></center>
+			</div>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p><br>
+            <br>
+          </p>
+           <p>&nbsp;</p>
+			
+                       <p>&nbsp;</p>
+<br>
+<br>
+            <p>&nbsp;</p>
+		</div>
+	</div>
+
+	<div data-role="page" id="itemView">
+		<header data-nobackbtn="true" data-role="header">
+			<center><img src="img/title.png"></center>
+		</header>
+		<div data-role="content" id="itemContent">
+			<div id="toolbar" data-role="controlgroup" data-type="horizontal"><a href="#home" title="Back home" data-role="button" data-icon="refresh" data-theme="c" class="toolbar_link" data-transition="slide">Back</a></div>
+			<ul data-role="listview" data-theme="c" data-dividertheme="a">
+				<li data-role="list-divider" id="itemListType">Type</li>
+				<li data-role="list-divider" id="itemListName">Name</li>
+			</ul>
+			<div id="itemListMap"></div>
+			<div>
+				<a href="#delItem" data-icon="delete" data-role="button" class="btn-danger">Delete Location</a>
+			</div>
+			<input type="hidden" name="itemKey" id="itemKey">
+		</div>
+	</div>
+
+	<div data-role="page" id="delItem">
+		<header data-nobackbtn="true" data-role="header">
+			<center><img src="img/title.png"></center>
+		</header>
+		<div data-role="content" >
+			<div id="toolbar" data-role="controlgroup" data-type="horizontal">
+			  <p>&nbsp;</p>
+			  <p>&nbsp;</p>
+			</div>
+			<p>Are you sure you want to delete the Location<span id="item2Del"></span>?</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="#home" onclick="deleteItem()" title="Clear Item" data-icon="check" data-role="button" class="btn-info">Yes</a>
+				<a href="#itemView" title="Cancel Deletion" data-icon="delete" data-role="button" class="btn-danger">Cancel</a>
+			</div>
+			<p>
+			  <input id="itemKey2Del" type="hidden">
+		  </p>
+			<p>&nbsp;</p>
+		  <p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+		</div>
+	</div>
+	<div data-role="page" id="howto">
+	  <div data-role="content">	    </div>
+	</div>	
+</body>
+</html>
